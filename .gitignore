@@ -1,3 +1,4 @@
 /gatsby/.cache/
 /gatsby/public/
 /gatsby/node_modules/
+/gatsby/package-lock.json
