@@ -1,8 +1,10 @@
+/gatsby/.idea/
+/gatsby/.vscode/
 /gatsby/.cache/
-/gatsby/public/
+/gatsby/.env
 /gatsby/node_modules/
 /gatsby/package-lock.json
-/gatsby/.env
-/gatsby/.idea/
 
 /sanity/.idea/
+/sanity/node_modules/
+/gatsby/package-lock.json
