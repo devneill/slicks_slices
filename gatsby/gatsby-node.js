@@ -1,4 +1,5 @@
 import path from 'path';
+import fetch from 'isomorphic-fetch';
 
 async function turnPizzasIntoPages({ graphql, actions }) {
   // 1. Get a template for this page
@@ -16,7 +17,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
       }
     }
   `);
-  console.log(data);
   // loop over each pizza and create page for that pizza
   data.pizzas.nodes.forEach((pizza) => {
     actions.createPage({
@@ -31,7 +31,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
 }
 
 async function turnToppingsIntoPages({ graphql, actions }) {
-  console.log('Turning the toppings into pages');
   // 1. Get a template for this page
   const toppingTemplate = path.resolve('./src/pages/pizzas.js');
   // 2. query all the toppings
@@ -47,7 +46,6 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   `);
   // 3. createPage for that topping
   data.toppings.nodes.forEach((topping) => {
-    console.log(`creating page for topping`, topping.name);
     actions.createPage({
       path: `topping/${topping.name}`,
       component: toppingTemplate,
@@ -58,6 +56,40 @@ async function turnToppingsIntoPages({ graphql, actions }) {
     });
   });
   // 4. pass topping data to pizza.js
+}
+
+async function fetchBeersAndTurnIntoNodes({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) {
+  // fetch list of beers
+  const res = await fetch('https://api.sampleapis.com/beers/ale');
+  const beers = await res.json();
+  // loop over each one
+  for (const beer of beers) {
+    const nodeContent = JSON.stringify(beer);
+    const nodeMeta = {
+      id: createNodeId(`beer-${beer.name}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'Beer',
+        mediaType: 'application/json',
+        contentDigest: createContentDigest(beer),
+      },
+    };
+    // create a node for that beer
+    actions.createNode({
+      ...beer,
+      ...nodeMeta,
+    });
+  }
+}
+
+export async function sourceNodes(params) {
+  // fetch list of beers and source them into our gatsby API
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 }
 
 export async function createPages(params) {
