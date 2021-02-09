@@ -2,3 +2,7 @@
 /gatsby/public/
 /gatsby/node_modules/
 /gatsby/package-lock.json
+/gatsby/.env
+/gatsby/.idea/
+
+/sanity/.idea/
