@@ -120,8 +120,7 @@ var plugins = [{
     "plugins": [],
     "projectId": "w21qms00",
     "dataset": "production",
-    "watchMode": true,
-    "token": "skkrSaZrJ7T2Xn1oDm00qhRrdJDGeKYO7GasOSKCn6snUMhLaOE3By14UiV2Cnw6hWkaLx5eMFCJbNnsLSkHrJFCu07j5gkft97JDTcYGgZbdCQ4sA5IEhbhtm2XLJ7pMqnXE2lqjhP6fS4x71apHSrjAqQwBJtAaoPO2IIn6gKodMG8uakL"
+    "watchMode": true
   }
 }, {
   plugin: __webpack_require__(/*! ./gatsby-ssr */ "./gatsby-ssr.js"),
