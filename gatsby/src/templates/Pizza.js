@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import { graphql } from 'gatsby';
 
 const PizzaGrid = styled.div`
   display: grid;
