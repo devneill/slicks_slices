@@ -42,9 +42,9 @@ export default function SlicemastersPage({ data, pageContext }) {
   return (
     <>
       <Pagination
-        pageSize={pageContext.pageSize}
-        totalCount={slicemasters.totalCount}
-        currentPage={pageContext.currentPage}
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        totalCount={data.slicemasters.totalCount}
+        currentPage={pageContext.currentPage || 1}
         base="slicemasters"
       />
       <SlicemasterGridStyles>
