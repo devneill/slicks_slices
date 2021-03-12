@@ -1,46 +1,31 @@
 import React from 'react';
-import Img from 'gatsby-image';
-import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
-const PizzaGrid = styled.div`
-  display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-`;
-
-export default function SinglePizzaPage({ data: { pizza } }) {
+export default function SingleSlicemasterPage({ data: { person } }) {
   return (
-    <PizzaGrid>
-      <Img fluid={pizza.image.asset.fluid} />
-      <div>
-        <h2 className="mark">{pizza.name}</h2>
-        <ul>
-          {pizza.toppings.map((topping) => (
-            <li key={topping.id}>{topping.name}</li>
-          ))}
-        </ul>
-      </div>
-    </PizzaGrid>
+    <div className="center">
+      <Img fluid={person.image.asset.fluid} />
+      <h2>
+        <span className="mark">{person.name}</span>
+      </h2>
+      <p>{person.description}</p>
+    </div>
   );
 }
-// This needs to be dynamic based on the slug passed in via the context in gatsby-node.js
+
 export const query = graphql`
   query($slug: String!) {
-    pizza: sanityPizza(slug: { current: { eq: $slug } }) {
+    person: sanityPerson(slug: { current: { eq: $slug } }) {
       name
       id
+      description
       image {
         asset {
-          fluid(maxWidth: 800) {
+          fluid(maxWidth: 1000, maxHeight: 750) {
             ...GatsbySanityImageFluid
           }
         }
-      }
-      toppings {
-        name
-        id
-        vegetarian
       }
     }
   }
