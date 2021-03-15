@@ -68,7 +68,6 @@ async function fetchBeersAndTurnIntoNodes({
   const beers = await res.json();
   // loop over each one
   for (const beer of beers) {
-    const nodeContent = JSON.stringify(beer);
     const nodeMeta = {
       id: createNodeId(`beer-${beer.name}`),
       parent: null,
