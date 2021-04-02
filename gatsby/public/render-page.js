@@ -1591,15 +1591,18 @@ function stripPrefix(str, prefix = ``) {
 /*!***********************!*\
   !*** ./gatsby-ssr.js ***!
   \***********************/
-/*! exports provided: wrapPageElement */
+/*! exports provided: wrapPageElement, wrapRootElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapPageElement", function() { return wrapPageElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapRootElement", function() { return wrapRootElement; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/components/Layout */ "./src/components/Layout.js");
+/* harmony import */ var _src_components_OrderContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/OrderContext */ "./src/components/OrderContext.js");
+
 
 
 function wrapPageElement({
@@ -1607,6 +1610,11 @@ function wrapPageElement({
   props
 }) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], props, element);
+}
+function wrapRootElement({
+  element
+}) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_components_OrderContext__WEBPACK_IMPORTED_MODULE_2__["OrderProvider"], null, element);
 }
 
 /***/ }),
@@ -32231,6 +32239,37 @@ function Nav() {
     to: "/order"
   }, "Order Ahead!"))));
 }
+
+/***/ }),
+
+/***/ "./src/components/OrderContext.js":
+/*!****************************************!*\
+  !*** ./src/components/OrderContext.js ***!
+  \****************************************/
+/*! exports provided: OrderProvider, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderProvider", function() { return OrderProvider; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // create order context
+
+const OrderContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext();
+function OrderProvider({
+  children
+}) {
+  // we need to stick state in here
+  const {
+    0: order,
+    1: setOrder
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(OrderContext.Provider, {
+    value: [order, setOrder]
+  }, children);
+}
+/* harmony default export */ __webpack_exports__["default"] = (OrderContext);
 
 /***/ }),
 
