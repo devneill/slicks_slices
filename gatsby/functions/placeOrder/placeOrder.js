@@ -42,6 +42,13 @@ function wait(ms = 0) {
 exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
   console.log(body);
+  // check if they have filled out the honeypot
+  if (body.biltong) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Boop beeep bop goodbye' }),
+    };
+  }
   // validate info coming in is correct
   const requiredFields = ['email', 'name', 'order'];
 
