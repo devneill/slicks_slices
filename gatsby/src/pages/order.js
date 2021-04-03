@@ -13,7 +13,7 @@ import calculateOrderTotal from '../utils/calculateOrderTotal';
 
 export default function OrderPage({ data }) {
   const pizzas = data.pizzas.nodes;
-  const { values, updateValue } = useForm({ name: '', email: '' });
+  const { values, updateValue } = useForm({ name: '', email: '', biltong: '' });
   const {
     order,
     addToOrder,
@@ -52,6 +52,13 @@ export default function OrderPage({ data }) {
               name="email"
               value={values.email}
               onChange={updateValue}
+            />
+            <input
+              type="biltong"
+              name="biltong"
+              value={values.biltong}
+              onChange={updateValue}
+              className="biltong"
             />
           </label>
         </fieldset>
